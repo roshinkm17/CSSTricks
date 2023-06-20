@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@800&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Urbanist";
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.text-to-animate {
+  font-weight: 800;
+  text-align: center;
+  font-size: 70px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 10;
+  color: white;
+}
+
+.text-to-animate p {
+  position: relative;
+  overflow: hidden;
+}
+
+.text-to-animate span {
+  position: relative;
+  display: block;
+  opacity: 0;
+  transform-origin: left;
+  line-height: 72px;
+}
+
+.video-bg {
+  background: url("/mr-krabs-spongebob.gif");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+
+@keyframes animate-up {
+  0% {
+    transform: rotateZ(15deg) translateY(80px);
+  }
+  100% {
+    transform: rotateZ(0) translateY(0px);
+    opacity: 1;
+  }
+}
