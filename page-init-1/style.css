@@ -1,0 +1,157 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+  font-weight: lighter;
+}
+
+.circle-wrapper {
+  position: relative;
+  height: 100px;
+  width: 200px;
+  transform: rotateZ(90deg) translateY(-50px);
+}
+
+.circle-wrapper::before {
+  content: "H";
+  position: absolute;
+  inset: 0;
+  height: 100px;
+  width: 200px;
+  transform: rotateZ(90deg) translateX(220px) translateY(-20px);
+  font-size: 120px;
+  color: white;
+  font-family: "INter";
+  opacity: 0;
+  animation: fade-in 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 2s;
+}
+
+.circle-wrapper::after {
+  content: "W?";
+  position: absolute;
+  inset: 0;
+  height: 100px;
+  width: 200px;
+  transform: rotateZ(-90deg) translateX(120px) translateY(-27px);
+  font-size: 120px;
+  color: white;
+  font-family: "INter";
+  opacity: 0;
+  animation: fade-in 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 2s;
+}
+
+.half {
+  height: 100px;
+  width: 200px;
+  border-radius: 150px 150px 0 0;
+  border: 40px solid black;
+  border-bottom: none;
+  position: absolute;
+  inset: 0;
+}
+
+.half.first {
+  transform: rotateZ(-180deg) translateY(-100px);
+  animation: animate-left-half 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 400ms,
+    animate-left-half-back 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 1.5s,
+    scale-down-left 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 2.5s;
+}
+
+.half.second {
+  transform: rotateZ(-0deg) translateX(0px);
+  animation: animate-right-half 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 400ms,
+    animate-right-half-back 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 1.5s,
+    scale-down-right 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 2.5s;
+}
+
+@keyframes animate-left-half {
+  100% {
+    transform-origin: bottom;
+    transform: rotateZ(-180deg) translateX(-50px);
+  }
+}
+
+@keyframes animate-right-half {
+  100% {
+    transform-origin: bottom;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes animate-right-half-back {
+  100% {
+    border-color: white;
+    transform-origin: bottom;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes scale-down-right {
+  100% {
+    border-width: 40px;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes scale-down-left {
+  100% {
+    border-width: 40px;
+    transform: scale(0.5) rotateZ(-180deg);
+  }
+}
+
+@keyframes animate-left-half-back {
+  100% {
+    border-color: white;
+    transform-origin: bottom;
+    transform: rotateZ(-180deg) translateX(0px);
+  }
+}
+
+@keyframes fade-in {
+  100% {
+    opacity: 1;
+  }
+}
+
+.curtain_wrapper {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+}
+
+.curtain {
+  background-color: black;
+  height: 100vh;
+  width: 0vw;
+  position: absolute;
+  top: 0px;
+}
+
+.curtain.left {
+  left: 0px;
+}
+
+.curtain.right {
+  right: 0px;
+}
+
+.curtain.left,
+.curtain.right {
+  animation: animate-curtain 1s cubic-bezier(0.83, 0, 0.17, 1) forwards 1.2s;
+}
+
+@keyframes animate-curtain {
+  100% {
+    width: 50vw;
+  }
+}
