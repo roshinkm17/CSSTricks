@@ -60,6 +60,18 @@ body {
   overflow: hidden;
 }
 
+.active .day {
+  background-color: #0f1c2d;
+  height: 75px;
+  width: 75px;
+  position: relative;
+  left: 0px;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .sun {
   position: relative;
   height: 30px;
@@ -72,6 +84,42 @@ body {
   border-radius: 50%;
 }
 
+.active .sun {
+  transform: translate(-0%, -120%) scale(0.8);
+  background: beige;
+  box-shadow: 0px 0px 20px 1px beige;
+}
+
+.active .crater {
+  position: absolute;
+  background-color: #e5e5af;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 1px 1px #b8b88644 inset;
+}
+
+.active .crater-1 {
+  height: 7px;
+  width: 10px;
+  top: 20%;
+  left: 50%;
+}
+
+.active .crater-2 {
+  height: 5px;
+  width: 5px;
+  top: 50%;
+  left: 20%;
+}
+
+.active .crater-3 {
+  height: 9px;
+  width: 11px;
+  top: 70%;
+  left: 60%;
+  box-shadow: none;
+}
+
 .rays {
   position: relative;
   height: 100px;
@@ -79,6 +127,10 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+.active .rays {
+  opacity: 0;
 }
 
 .ray-1,
@@ -92,7 +144,8 @@ body {
   transform: rotate(45deg);
   clip-path: polygon(20% 0%, 40% 0%, 100% 100%, 0% 100%);
   background-color: #ffffff41;
-  box-shadow: 0px 0px 10px 1px #ffffff4a inset;
+  box-shadow: 0px 2px 10px 2px #ffffff4a inset;
+  animation: ray-dim-animation 3s ease-in-out infinite;
 }
 
 .ray-1 {
@@ -105,18 +158,21 @@ body {
   left: 30%;
   top: 20%;
   transform: rotate(25deg);
+  animation-delay: 300ms;
 }
 
 .ray-3 {
   left: 73%;
   top: 24%;
   transform: rotate(-45deg);
+  animation-delay: 1.2s;
 }
 
 .ray-4 {
   right: 90%;
   top: -10%;
   transform: rotate(95deg);
+  animation-delay: 600ms;
 }
 
 .land {
@@ -127,12 +183,20 @@ body {
   bottom: 0px;
 }
 
+.active .land {
+  background-color: #0e4c0f;
+}
+
 .tree {
   position: relative;
   height: 50px;
   width: 30px;
   bottom: 10px;
   left: 10px;
+}
+
+.active .tree {
+  left: 30px;
 }
 
 .tree .stem {
@@ -159,6 +223,10 @@ body {
   z-index: -1;
 }
 
+.active .tree .leaves {
+  background-color: #20680a;
+}
+
 .tree .leaves::before {
   position: absolute;
   content: "";
@@ -168,7 +236,11 @@ body {
   border-radius: 70%;
   bottom: -0px;
   right: 0px;
-  box-shadow: -1px -1px 0px 0px #6db73f;
+  box-shadow: -1px -1px 0px 0px #62a538;
+}
+
+.active .tree .leaves::before {
+  background-color: #448c18;
 }
 
 .tree .leaves::after {
@@ -183,6 +255,10 @@ body {
   box-shadow: 0px 1px 0px 0px #387711;
 }
 
+.active .tree .leaves::after {
+  background-color: #499719;
+}
+
 .shadow {
   position: absolute;
   height: 6px;
@@ -193,6 +269,10 @@ body {
   opacity: 0.5;
   left: -10px;
   filter: blur(2px);
+}
+
+.active .shadow {
+  left: 10px;
 }
 
 .tree2 {
@@ -247,6 +327,109 @@ body {
   width: 5px;
 }
 
+.active .bird-2 .wing-1,
+.active .bird-2 .wing-2,
+.active .wing-1,
+.active .wing-2 {
+  opacity: 0;
+}
+
+.active .star {
+  position: absolute;
+  height: 2px;
+  width: 2px;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  background-color: #fcfc9e;
+  right: 40%;
+  top: 20%;
+  filter: blur(1px);
+  animation: star-rotate-scale 6s linear infinite forwards;
+}
+
+.active .star-2 {
+  height: 4px;
+  width: 4px;
+  right: 50%;
+  top: 10%;
+  background-color: #fcfc9e;
+  animation-delay: 300ms;
+}
+
+.active .star-3 {
+  height: 3px;
+  width: 3px;
+  right: 60%;
+  top: 30%;
+  background-color: #fcfc9e;
+  animation-delay: 600ms;
+}
+
+.active .star-4 {
+  height: 2px;
+  width: 2px;
+  right: 46%;
+  top: 25%;
+  background-color: #fcfc9e;
+  animation-delay: 900ms;
+}
+
+.active .star-5 {
+  height: 2px;
+  width: 2px;
+  right: 30%;
+  top: 10%;
+  background-color: #fcfc9e;
+  animation-delay: 1200ms;
+}
+
+.active .star-6 {
+  height: 2px;
+  width: 2px;
+  right: 20%;
+  top: 30%;
+  background-color: #fcfc9e;
+  animation-delay: 1500ms;
+}
+
+.active .shooting-star {
+  position: absolute;
+  height: 20px;
+  width: 1px;
+  left: 100%;
+  top: -5%;
+  transform: rotate(45deg);
+  z-index: -10;
+  background: linear-gradient(to top, #ffffffa8, transparent);
+  animation: shooting-star-movement 3s cubic-bezier(0.55, 0, 1, 0.45) infinite;
+}
+
+.active .sh-star-2 {
+  height: 10px;
+  width: 1px;
+  left: 70%;
+  top: -15%;
+  background: linear-gradient(to top, #ffffffb5, transparent);
+}
+
+.active .sh-star-3 {
+  height: 10px;
+  width: 1px;
+  left: 80%;
+  top: -50%;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.594), transparent);
+}
+
 @keyframes wing-flapping-right {
   0% {
     transform: rotate(0deg);
@@ -268,5 +451,41 @@ body {
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes ray-dim-animation {
+  0% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes star-rotate-scale {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes shooting-star-movement {
+  0% {
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(700%, 700%);
   }
 }
