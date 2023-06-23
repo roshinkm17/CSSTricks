@@ -10,6 +10,7 @@ body {
   width: 100vw;
   display: grid;
   place-items: center;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
 .switch_wrapper {
@@ -17,10 +18,42 @@ body {
   width: 200px;
   border-radius: 150px;
   position: relative;
-  transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: 0.5s linear;
   left: 70px;
+  background-color: white;
   box-shadow: #3e3eae40 0px 50px 100px -20px, #2c79b74d 0px 30px 60px -30px,
     #679cd141 -2px -3px 5px 0px inset;
+}
+
+.switch_btn::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: 150px;
+  z-index: 100;
+  box-shadow: 0px 0px 10px 5px #ffffff66 inset;
+}
+
+.switch_btn::after {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 6px;
+  background-color: white;
+  border-radius: 80%;
+  transform: rotate(39deg);
+  right: 12px;
+  top: 47px;
+  transition: 0.5s linear;
+  filter: blur(5px);
+}
+
+.active .switch_btn::after {
+  transform: rotate(39deg);
+  right: 60px;
+  top: 10px;
 }
 
 .switch_btn {
@@ -32,7 +65,7 @@ body {
   top: 50%;
   transform: translate(0, -50%);
   border-radius: 50%;
-  transition: 0.1s linear;
+  transition: 0.5s linear;
   box-shadow: #2f84c540 0px 50px 100px -20px, #1d54ba4d 0px 30px 60px -30px,
     #3b758441 0px -1px 3px 1px;
 }
@@ -43,13 +76,13 @@ body {
 
 .active .switch_btn {
   transform: translate(95px, -50%);
-  background-color: darkcyan;
   box-shadow: #2f84c540 0px 50px 100px -20px, #1d54ba4d 0px 30px 60px -30px,
     #3b758441 -1px -3px 3px 1px;
 }
 
 .day {
   background-color: #5bc7ee;
+  transition: 0.5s ease;
   height: 75px;
   width: 75px;
   position: relative;
@@ -82,6 +115,7 @@ body {
   opacity: 0.9;
   box-shadow: 0px 0px 40px 17px white;
   border-radius: 50%;
+  transition: 0.5s ease;
 }
 
 .active .sun {
@@ -127,6 +161,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  transition: 0.5s ease;
 }
 
 .active .rays {
@@ -181,6 +216,7 @@ body {
   width: 100%;
   background-color: #136d15;
   bottom: 0px;
+  transition: 0.5s ease;
 }
 
 .active .land {
@@ -193,6 +229,7 @@ body {
   width: 30px;
   bottom: 10px;
   left: 10px;
+  transition: 0.5s ease;
 }
 
 .active .tree {
@@ -297,7 +334,7 @@ body {
   left: 10px;
   transform: rotate(-10deg);
   transform-origin: right;
-  animation: wing-flapping-left 1s ease-in-out infinite;
+  animation: wing-flapping-left 0.5s ease-in-out infinite;
 }
 
 .wing-2 {
@@ -310,7 +347,7 @@ body {
   left: 15px;
   transform: rotate(10deg);
   transform-origin: left;
-  animation: wing-flapping-right 1s ease-in-out infinite;
+  animation: wing-flapping-right 0.5s ease-in-out infinite;
 }
 
 .bird-2 .wing-1 {
@@ -327,11 +364,12 @@ body {
   width: 5px;
 }
 
-.active .bird-2 .wing-1,
-.active .bird-2 .wing-2,
-.active .wing-1,
-.active .wing-2 {
-  opacity: 0;
+.bird {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 0px;
+  left: 10px;
 }
 
 .active .star {
@@ -355,6 +393,7 @@ body {
   top: 20%;
   filter: blur(1px);
   animation: star-rotate-scale 6s linear infinite forwards;
+  transition: 0.5s ease;
 }
 
 .active .star-2 {
@@ -487,5 +526,15 @@ body {
   100% {
     opacity: 0;
     transform: rotate(45deg) translate(700%, 700%);
+  }
+}
+
+@keyframes bird-exit {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: perspective(50rem) translate(-40px, -10px) scale(1.5)
+      rotate(-45deg);
   }
 }
