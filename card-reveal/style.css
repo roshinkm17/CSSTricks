@@ -1,0 +1,124 @@
+:root {
+  --primary-color: #385170;
+  --secondary-color: #bbe4e9;
+  --card-one-color: #53a8b6;
+  --card-two-color: #79c2d0;
+  --background-color: #142d4c;
+  --text-color: white;
+  --border-radius: 32px;
+  --card-border-radius: 24px;
+  --font-family: "Oswald", sans-serif;
+  --font-size: 24px;
+  --font-weight: 100;
+  --clip-path: polygon(46% 23%, 55% 33%, 100% 33%, 100% 100%, 0 100%, 0 23%);
+  --card-transform: translateX(-50%) translateY(-50%);
+  --card-hover-transform-one: translateX(-50%) translateY(-100%) rotate(-10deg);
+  --card-hover-transform-two: translateX(-50%) translateY(-90%) rotate(10deg);
+  --card-hover-transform-three: translateX(-50%) translateY(-100%) rotate(0deg);
+  --box-shadow: 1px 1px 2px rgba(3, 7, 18, 0.03),
+    2px 3px 6px rgba(3, 7, 18, 0.02), 5px 6px 14px rgba(3, 7, 18, 0.01),
+    9px 11px 24px rgba(3, 7, 18, 0.01);
+  --transition: 500ms cubic-bezier(1, 0.07, 0.47, 0.95);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.wrapper {
+  height: 300px;
+  width: 250px;
+  border-radius: var(--border-radius);
+  position: relative;
+  cursor: pointer;
+}
+
+.cards:hover .card-one {
+  transform: var(--card-hover-transform-one);
+}
+
+.cards:hover .card-two {
+  transform: var(--card-hover-transform-two);
+}
+
+.cards:hover .card-three {
+  transform: var(--card-hover-transform-three);
+}
+
+.front {
+  z-index: 1;
+  clip-path: var(--clip-path);
+  background-color: var(--primary-color);
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: var(--border-radius);
+}
+
+/* Card text */
+.front span {
+  color: var(--text-color);
+  position: absolute;
+  bottom: 28px;
+  left: 24px;
+  word-break: keep-all;
+  font-size: var(--font-size);
+  text-transform: capitalize;
+  font-weight: var(--font-weight);
+}
+
+/* Cards wrapper */
+.cards {
+  z-index: 0;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.card {
+  height: 80%;
+  width: 80%;
+  background-color: var(--secondary-color);
+  inset: 0;
+  border-radius: var(--card-border-radius);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transition: var(--transition);
+  transform: var(--card-transform);
+  box-shadow: var(--box-shadow);
+}
+
+.card.card-one {
+  background-color: var(--card-one-color);
+}
+
+.card.card-two {
+  background-color: var(--card-two-color);
+}
+
+.card.card-three {
+  pointer-events: all;
+}
+
+.back {
+  z-index: -1;
+  background-color: var(--background-color);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius);
+}
